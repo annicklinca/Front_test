@@ -5,6 +5,7 @@ import Crime from './crime';
 import Incident from './incident';
 import Analytics from './analytics';
 import Login from './login';
+import Accident from './accident';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes> {/* Use Routes instead of Switch */}
           <Route path="/Crime" element={<Crime />} />
           <Route path="/Incident" element={<Incident />} />
+          <Route path="/Accident" element={<Accident />} />
           <Route path="/Analytics" element={<Analytics />} />
           <Route path="/" element={<Login />} />
         </Routes>

@@ -15,17 +15,13 @@ const Analytics = () => {
         </TabList>
         </div>
         <TabPanel>
-          <h2>Content for Tab 1</h2>
-          lllll
+        <iframe src="https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5?portalUrl=https://gis.police.gov.rw/portal" title="Tab 1 Content" style={{ width: '100%', height: '650px' }}></iframe>
           {/* Add content for Tab 1 */}
         </TabPanel>
-        <TabPanel>
-          <h2>Content for Tab 2</h2>
-          {/* Add content for Tab 2 */}
-        </TabPanel>
-        <TabPanel>
-          <h2>Content for Tab 3</h2>
-          {/* Add content for Tab 3 */}
+
+       <TabPanel>
+        <iframe src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=17ee70c25231406382ba75d6510553e2" title="Tab 1 Content" style={{ width: '100%', height: '650px' }}></iframe>
+          {/* Add content for Tab 1 */}
         </TabPanel>
       </Tabs>
       {/* Your Crime page content goes here */}

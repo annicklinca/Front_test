@@ -8,11 +8,11 @@ const Header = ({ currentPage }) => {
     <>
       {/* First header */}
       <header class="bg-gray-200">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <nav class="mx-2 flex max-w-16xl items-center justify-between p-2.5 lg:px-8" aria-label="Global">
           <div class="flex lg:flex-1">
-            <a href="#" class="-m-1.5 p-1.5">
-              <img src={logo} className="w-10"/>
-            </a>
+          <a href="" class="">
+        <img class=" w-12 inline-block" src={logo} alt=""/><span className="font-bold text-blue-900 px-2 inline-block">Crime and Incidents Management</span>
+      </a>
           </div>
           <div class="flex lg:hidden">
             <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
@@ -25,7 +25,7 @@ const Header = ({ currentPage }) => {
           <div class="hidden lg:flex lg:gap-x-10 pl-8">
             <a href="/Crime" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Crime' ? 'border-b-2 border-blue-800' : ''}`}>Crime</a>
             <a href="/Incident" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Incident' ? 'border-b-2 border-blue-800' : ''}`}>Incident</a>
-            <a href="#" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Road' ? 'border-b-2 border-blue-800' : ''}`}>Road</a>
+            <a href="/Accident" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Accident' ? 'border-b-2 border-blue-800' : ''}`}>Accident</a>
             <a href="/Analytics" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Analytics' ? 'border-b-2 border-blue-800' : ''}`}>Analytics</a>
             <a href="#" class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${currentPage === 'Report' ? 'border-b-2 border-blue-800' : ''}`}>Report</a>
             <a href="/" class="text-sm font-bold leading-6 text-gray-100 bg-blue-800 p-2 px-8 rounded-md hover:bg-blue-500">Logout</a>
