@@ -38,22 +38,18 @@ const Header = ({ currentPage }) => {
               <a href="#" class="-m-1.5 p-1.5">
               <img src={logo} className="w-10"/>
               </a>
-              <button type="button" class="-m-2.5 rounded-md p-2.5 text-blue-700">
-                <span class="sr-only">Close menu</span>
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
             </div>
             <div class="mt-6 flow-root">
               <div class="-my-6 divide-y divide-gray-500/10">
                 <div class="space-y-2 py-6">
-                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800">Crime</a>
-                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800">Incident</a>
-                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800">Road</a>
+                  <a href="/Crime" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold">Crime</a>
+                  <a href="/Incident" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold">Incident</a>
+                  <a href="/Accident" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold">Accident</a>
+                  <a href="/Analytics" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold">Analytics</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold">Report</a>
                 </div>
                 <div class="py-6">
-                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-blue-800">Logout</a>
+                  <a href="/" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-blue-800">Logout</a>
                 </div>
               </div>
             </div>
