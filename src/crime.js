@@ -131,7 +131,7 @@ const Crime = () => {
           <iframe
             src={iframeUrl}
             title="Tab 1 Content"
-            style={{ width: "100%", height: "650px" }}
+            style={{ width: "100%", height: "1150px" }}
           ></iframe>
         </TabPanel>
 
@@ -139,7 +139,7 @@ const Crime = () => {
           <iframe
             src="https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "600px" }}
+            style={{ width: "100%", height: "1150px" }}
           ></iframe>
           {/* Maps*/}
         </TabPanel>
@@ -148,7 +148,7 @@ const Crime = () => {
           <iframe
             src="https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "600px" }}
+            style={{ width: "100%", height: "1150px" }}
           ></iframe>
           {/* Forms */}
         </TabPanel>
