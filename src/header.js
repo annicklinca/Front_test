@@ -4,6 +4,13 @@ import "react-tabs/style/react-tabs.css";
 import logo from "./RNP_LOGO.png";
 
 const Header = ({ currentPage }) => {
+  const handleSignout = () => {
+    // dispatch(resetUser());
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    sessionStorage.removeItem("token");
+    // toastMessage("success", "Logged out successfull!");
+  };
   return (
     <>
       {/* First header */}
@@ -85,6 +92,7 @@ const Header = ({ currentPage }) => {
             </a>
             <a
               href="/"
+              onClick={handleSignout}
               class="text-sm font-bold leading-6 text-gray-100 bg-blue-800 p-2 px-8 rounded-md hover:bg-blue-500"
             >
               Logout
