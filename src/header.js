@@ -104,31 +104,31 @@ const Header = ({ currentPage }) => {
                 <div class="space-y-2 py-6">
                   <a
                     href="/Crime"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
                     Crime
                   </a>
                   <a
                     href="/Incident"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
                     Incident
                   </a>
                   <a
                     href="/Accident"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
                     Accident
                   </a>
                   <a
                     href="/Analytics"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
                     Analytics
                   </a>
                   <a
                     href="text"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
                     Report
                   </a>
