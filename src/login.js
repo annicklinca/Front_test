@@ -101,9 +101,9 @@ const Login = () => {
                     </label>
 
                     <div className="relative">
-                      <div className=" inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                      {/* <div className=" inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
                         <i className="fas fa-at text-blue-500"></i>
-                      </div>
+                      </div> */}
                       <input
                         ref={usernameRef}
                         id="text"
@@ -125,7 +125,10 @@ const Login = () => {
                     <div className="relative">
                       <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
                         <span>
-                          <i className="fas fa-lock text-blue-500"></i>
+                          <i
+                            className="fas fa-lock text-blue-500"
+                            onClick={handleShow}
+                          ></i>
                         </span>
                       </div>
 
