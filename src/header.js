@@ -49,7 +49,7 @@ const Header = ({ currentPage }) => {
                 currentPage === "Crime" ? "border-b-2 border-blue-800" : ""
               }`}
             >
-              Crime
+              Crimes
             </a>
             <a
               href="/Incident"
@@ -57,7 +57,7 @@ const Header = ({ currentPage }) => {
                 currentPage === "Incident" ? "border-b-2 border-blue-800" : ""
               }`}
             >
-              Incident
+              Incidents
             </a>
             <a
               href="/Accident"
@@ -65,7 +65,7 @@ const Header = ({ currentPage }) => {
                 currentPage === "Accident" ? "border-b-2 border-blue-800" : ""
               }`}
             >
-              Accident
+              Accidents
             </a>
             <a
               href="/Analytics"
@@ -106,19 +106,19 @@ const Header = ({ currentPage }) => {
                     href="/Crime"
                     class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
-                    Crime
+                    Crimes
                   </a>
                   <a
                     href="/Incident"
                     class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
-                    Incident
+                    Incidents
                   </a>
                   <a
                     href="/Accident"
                     class="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-blue-900 hover:border-b-2 border-blue-800 font-bold"
                   >
-                    Accident
+                    Accidents
                   </a>
                   <a
                     href="/Analytics"
