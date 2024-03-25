@@ -124,7 +124,7 @@ const Incident = () => {
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
             <Tab>Maps</Tab>
-            <Tab>Forms</Tab>
+            <Tab>Form</Tab>
           </TabList>
         </div>
         <TabPanel>

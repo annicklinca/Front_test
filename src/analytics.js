@@ -11,7 +11,7 @@ const Analytics = () => {
         <div className="">
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Time Maps</Tab>
-            <Tab>Analytic App</Tab>
+            <Tab>Analytics App</Tab>
           </TabList>
         </div>
         <TabPanel>
