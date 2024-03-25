@@ -117,7 +117,7 @@ const Accident = () => {
   }
 
   return (
-    <div>
+    <div className="bg-gray-200">
       <Header currentPage="Accident" />
       <Tabs>
         <div className="">
@@ -129,28 +129,31 @@ const Accident = () => {
         </div>
         <TabPanel>
           {/* Dashboard */}
+          <div className="iframe-container px-8">
           <iframe
             src={iframeUrl}
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
         </TabPanel>
 
         <TabPanel>
+          <div className="iframe-container px-8">
           <iframe
             src="https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
           {/* Maps*/}
         </TabPanel>
 
         <TabPanel>
+          <div className="iframe-container px-8">
           <iframe
             src="https://survey123.arcgis.com/share/22c2786f70c04e8d8c788d5cd433783e?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
           {/* Forms */}
         </TabPanel>
       </Tabs>

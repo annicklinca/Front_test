@@ -2,13 +2,14 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import logo from "./RNP_LOGO.png";
 import { useNavigate } from "react-router-dom";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
-
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
   const submit = (e) => {
     e.preventDefault();
@@ -17,11 +18,12 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     if (!username || !password) {
-      // toast.warn("Username and password should not be empty");
+      toast.warn("Username and password should not be empty", {
+        position: "top-center",
+      });
       return;
     }
 
-    console.log(username);
     const params = new URLSearchParams();
     params.append("username", username);
     params.append("password", password);
@@ -41,17 +43,18 @@ const Login = () => {
       .post(URL, params, config)
       .then((response) => {
         if (response.data.error) {
-          // toast.error(response.data.error.message);
-          // toast.error("Username or password invalid");
+          toast.error("Username or password invalid", {
+            position: "top-center",
+          });
         } else {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("username", username);
-          // toast.success("You have successfully login");
+          toast.success("You have successfully logged in");
           navigate("/Crime", { replace: true });
         }
       })
       .catch((error) => {
-        // toast.error(error.message);
+        toast.error(error.message);
       });
   };
 
@@ -61,38 +64,18 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-            crossorigin="anonymous"
-          />
-        </head>
-        <body>
-          <div className="min-h-screen flex flex-col items-center justify-center bg-blue-900">
-            <div className=" flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
-              <div className="font-bold self-center text-xl sm:text-3xl text-gray-800">
-                <center>
-                  <img alt="" src={logo} className="w-24 h-24" />
-                  <h2>Crimes and Incidents Management</h2>
-                </center>
-              </div>
-              {/* <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-                Enter your credentials to access your account
-              </div> */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-900">
+      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
+        <div className="font-bold self-center text-xl sm:text-3xl text-gray-800">
+          <center>
+            <img alt="" src={logo} className="w-24 h-24" />
+            <h2>Crimes and Incidents Management</h2>
+          </center>
+        </div>
 
-              <div className="mt-10">
-                <form onSubmit={submit}>
-                  <div className="flex flex-col mb-5">
+        <div className="mt-10">
+          <form onSubmit={submit}>
+          <div className="flex flex-col mb-5">
                     <label
                       for="username"
                       className="mb-1 text-xs font-semibold tracking-wide text-gray-600"
@@ -143,22 +126,18 @@ const Login = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="flex w-full">
-                    <button
-                      type="submit"
-                      onSubmit={submit}
-                      className="flex mt-2  items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-800 hover:bg-blue-500 rounded-2xl py-2 w-full transition duration-150 ease-in"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </form>
-              </div>
+            <div className="flex w-full">
+              <button
+                type="submit"
+                className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-800 hover:bg-blue-500 rounded-2xl py-2 w-full transition duration-150 ease-in"
+              >
+                Login
+              </button>
             </div>
-          </div>
-        </body>
-      </html>
+          </form>
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

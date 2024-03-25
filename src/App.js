@@ -6,6 +6,7 @@ import Incident from './incident';
 import Analytics from './analytics';
 import Login from './login';
 import Accident from './accident';
+import Report from './report';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/Incident" element={<Incident />} />
           <Route path="/Accident" element={<Accident />} />
           <Route path="/Analytics" element={<Analytics />} />
+          <Route path="/Report" element={<Report />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>

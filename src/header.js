@@ -2,6 +2,7 @@ import React from "react";
 // import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import logo from "./RNP_LOGO.png";
+import './iframe.css';
 
 const Header = ({ currentPage }) => {
   const handleSignout = () => {
@@ -83,7 +84,7 @@ const Header = ({ currentPage }) => {
               Analytics
             </a>
             <a
-              href="text"
+              href="/Report"
               class={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
                 currentPage === "Report" ? "border-b-2 border-blue-800" : ""
               }`}

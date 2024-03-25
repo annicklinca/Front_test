@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import './iframe.css'
 
 const Crime = () => {
   const username = localStorage.getItem("username");
@@ -116,7 +117,7 @@ const Crime = () => {
     iframe.src = iframeUrl;
   }
   return (
-    <div>
+    <div className="bg-gray-200">
       <Header currentPage="Crime" />
       <Tabs>
         <div className="">
@@ -128,28 +129,31 @@ const Crime = () => {
         </div>
         <TabPanel>
           {/* Dashboard */}
+          <div className="iframe-container px-8">
           <iframe
             src={iframeUrl}
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
         </TabPanel>
 
         <TabPanel>
+          <div className="iframe-container px-8">
           <iframe
             src="https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
           {/* Maps*/}
         </TabPanel>
 
         <TabPanel>
+          <div className="iframe-container px-8">
           <iframe
             src="https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal"
             title="Tab 1 Content"
-            style={{ width: "100%", height: "1150px" }}
           ></iframe>
+          </div>
           {/* Forms */}
         </TabPanel>
       </Tabs>

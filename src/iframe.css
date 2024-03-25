@@ -1,0 +1,11 @@
+.iframe-container {
+    height: 100vh; /* Adjusts height to fill 100% of viewport height */
+    width: 100%;
+  }
+
+  /* Style the iframe itself */
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove iframe border */
+  }
