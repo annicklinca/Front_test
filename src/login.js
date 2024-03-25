@@ -82,13 +82,13 @@ const Login = () => {
             <div className=" flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
               <div className="font-bold self-center text-xl sm:text-3xl text-gray-800">
                 <center>
-                  <img alt="" src={logo} className="w-12" />
+                  <img alt="" src={logo} className="w-24 h-24" />
+                  <h2>Crimes and Incidents Management</h2>
                 </center>
-                <h1>Login Here</h1>
               </div>
-              <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
+              {/* <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
                 Enter your credentials to access your account
-              </div>
+              </div> */}
 
               <div className="mt-10">
                 <form onSubmit={submit}>

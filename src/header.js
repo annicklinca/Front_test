@@ -23,7 +23,7 @@ const Header = ({ currentPage }) => {
             <a href="#@" class="">
               <img class=" w-12 inline-block" src={logo} alt="" />
               <span className="font-bold text-blue-900 px-2 inline-block">
-                Crime and Incidents Management
+                Crimes and Incidents Management
               </span>
             </a>
           </div>
