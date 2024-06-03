@@ -4,13 +4,13 @@ import logo from "./RNP_LOGO.png";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { trafficUser } from "./users";
 
 const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
-
+  const [showPassword, setShowPassword] = useState(false);
   const submit = (e) => {
     e.preventDefault();
 
@@ -50,7 +50,16 @@ const Login = () => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("username", username);
           toast.success("You have successfully logged in");
-          navigate("/Crime", { replace: true });
+          const isTrafficUser = trafficUser.some(
+            (user) => user.username === username
+          );
+
+          // Navigate to the appropriate page based on the user type
+          if (isTrafficUser) {
+            navigate("/Accident", { replace: true });
+          } else {
+            navigate("/Crime", { replace: true });
+          }
         }
       })
       .catch((error) => {
@@ -75,57 +84,57 @@ const Login = () => {
 
         <div className="mt-10">
           <form onSubmit={submit}>
-          <div className="flex flex-col mb-5">
-                    <label
-                      for="username"
-                      className="mb-1 text-xs font-semibold tracking-wide text-gray-600"
-                    >
-                      Username:
-                    </label>
+            <div className="flex flex-col mb-5">
+              <label
+                for="username"
+                className="mb-1 text-xs font-semibold tracking-wide text-gray-600"
+              >
+                Username:
+              </label>
 
-                    <div className="relative">
-                      <div className=" inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                        <i className="fas fa-user text-blue-500"></i>
-                      </div>
-                      <input
-                        ref={usernameRef}
-                        id="text"
-                        type="FormControlInput1"
-                        className=" text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                        placeholder="Enter your username"
-                        required=""
-                      />
-                    </div>
-                  </div>
+              <div className="relative">
+                <div className=" inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                  <i className="fas fa-user text-blue-500"></i>
+                </div>
+                <input
+                  ref={usernameRef}
+                  id="text"
+                  type="FormControlInput1"
+                  className=" text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                  placeholder="Enter your username"
+                  required=""
+                />
+              </div>
+            </div>
 
-                  <div className="flex flex-col mb-6">
-                    <label
-                      for="password"
-                      className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-                    >
-                      Password:
-                    </label>
-                    <div className="relative">
-                      <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                        <span>
-                          <i
-                            className="fas fa-lock text-blue-500"
-                            onClick={handleShow}
-                          ></i>
-                        </span>
-                      </div>
+            <div className="flex flex-col mb-6">
+              <label
+                for="password"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+              >
+                Password:
+              </label>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                  <span>
+                    <i
+                      className="fas fa-lock text-blue-500"
+                      onClick={handleShow}
+                    ></i>
+                  </span>
+                </div>
 
-                      <input
-                        ref={passwordRef}
-                        id="password"
-                        type={show ? "text" : "password"}
-                        name="FormControlInput2"
-                        className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                        placeholder="Enter your password"
-                        required=""
-                      />
-                    </div>
-                  </div>
+                <input
+                  ref={passwordRef}
+                  id="password"
+                  type={show ? "text" : "password"}
+                  name="FormControlInput2"
+                  className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                  placeholder="Enter your password"
+                  required=""
+                />
+              </div>
+            </div>
             <div className="flex w-full">
               <button
                 type="submit"

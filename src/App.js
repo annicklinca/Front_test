@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
 // import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
-import Crime from './crime';
-import Incident from './incident';
-import Analytics from './analytics';
-import Login from './login';
-import Accident from './accident';
-import Report from './report';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes instead of Switch
+import Crime from "./components/crime";
+import Incident from "./components/incident";
+import Analytics from "./components/analytics";
+import Login from "./login";
+import Accident from "./components/accident";
+import Report from "./report";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Routes> {/* Use Routes instead of Switch */}
+        <Routes>
+          {" "}
+          {/* Use Routes instead of Switch */}
           <Route path="/Crime" element={<Crime />} />
           <Route path="/Incident" element={<Incident />} />
           <Route path="/Accident" element={<Accident />} />

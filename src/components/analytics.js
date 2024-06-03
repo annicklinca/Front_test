@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./header";
+import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
@@ -15,21 +15,21 @@ const Analytics = () => {
           </TabList>
         </div>
         <TabPanel>
-          <div className="iframe-container px-8">
-          <iframe
-            src="https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5?portalUrl=https://gis.police.gov.rw/portal"
-            title="Tab 1 Content"
-          ></iframe>
+          <div className="iframe-container">
+            <iframe
+              src="https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5?portalUrl=https://gis.police.gov.rw/portal"
+              title="Tab 1 Content"
+            ></iframe>
           </div>
           {/* Add content for Tab 1 */}
         </TabPanel>
 
         <TabPanel>
-          <div className="iframe-container px-8">
-          <iframe
-            src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=17ee70c25231406382ba75d6510553e2"
-            title="Tab 1 Content"
-          ></iframe>
+          <div className="iframe-container">
+            <iframe
+              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=17ee70c25231406382ba75d6510553e2"
+              title="Tab 1 Content"
+            ></iframe>
           </div>
           {/* Add content for Tab 1 */}
         </TabPanel>
