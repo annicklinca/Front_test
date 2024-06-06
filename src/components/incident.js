@@ -8,6 +8,7 @@ const Incident = () => {
   const username = localStorage.getItem("username");
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
+  const [appForEditUrl, setAppForEditUrl] = useState("");
 
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
@@ -16,6 +17,16 @@ const Incident = () => {
     const matchedDistrictUser = districtUsers.find(
       (user) => user.username === username
     );
+    const provinceUrls = {
+      East: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=59d3e301e1de4f4295cf12efddecc138",
+      Kigali:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=2771fa9dc5754fd7a14872d76371d7cc",
+      West: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=9f9e28fc67b7418a83d179a61bdfb480",
+      South:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=292d872b94a64ec9aec55330775be44a",
+      North:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=774ba0b8fa6442ccb972398f993751ce",
+    };
 
     if (matchedProvinceUser) {
       setDashboardUrl(
@@ -24,6 +35,7 @@ const Incident = () => {
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#province=${matchedProvinceUser.province}`
       );
+      setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
     } else if (matchedDistrictUser) {
       setDashboardUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310#district=${matchedDistrictUser.district}`
@@ -37,6 +49,9 @@ const Incident = () => {
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9`
+      );
+      setAppForEditUrl(
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=a29ce46d28e341f6897824146086c6f3"
       );
     }
   }, [username]);
@@ -71,10 +86,7 @@ const Incident = () => {
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=c0c6f8fd88784e499714327cd04f0944"
-              title="App for Edit"
-            />
+            <iframe src={appForEditUrl} title="App for Edit" />
           </div>
         </TabPanel>
 

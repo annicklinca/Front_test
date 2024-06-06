@@ -35,7 +35,7 @@ const Crime = () => {
           `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#province=${matchedProvinceUser.province}`
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#province=${matchedProvinceUser.province}`
         );
         setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
       } else if (matchedDistrictUser) {
@@ -43,23 +43,24 @@ const Crime = () => {
           `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#district=${matchedDistrictUser.district}`
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`
         );
       } else {
         setDashboardUrl(
           `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36`
         );
         setMapUrl(
-          "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae"
+          "https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15"
         );
         setAppForEditUrl(
-          "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae"
+          "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b"
         );
       }
     }
   }, []);
 
   const isTabVisible = !dashboardUrl.includes("district=");
+  const isTabVisibleP = !dashboardUrl.includes("province=");
 
   return (
     <div className="bg-gray-200">
@@ -70,6 +71,7 @@ const Crime = () => {
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Maps</Tab>}
             {isTabVisible && <Tab>App for Edit</Tab>}
+            {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
             <Tab>Form</Tab>
           </TabList>
         </div>
@@ -92,6 +94,16 @@ const Crime = () => {
             <iframe src={appForEditUrl} title="App for Edit"></iframe>
           </div>
           {/* Apps for Edit*/}
+        </TabPanel>
+
+        <TabPanel>
+          <div className="iframe-container">
+            <iframe
+              src={`https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5`}
+              title="Time profile map"
+            ></iframe>
+          </div>
+          {/* Time profile map */}
         </TabPanel>
 
         <TabPanel>

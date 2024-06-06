@@ -8,6 +8,7 @@ const Accident = () => {
   const username = localStorage.getItem("username");
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
+  const [appForEditUrl, setAppForEditUrl] = useState("");
 
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
@@ -16,6 +17,16 @@ const Accident = () => {
     const matchedDistrictUser = districtUsers.find(
       (user) => user.username === username
     );
+    const provinceUrls = {
+      East: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=3364258ab5744dcc88b62e119fd1e7d0",
+      Kigali:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=a0957eb53100409d88bf0f36ebc2ebb5",
+      West: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=5e9269da53b840e695d135fa5f75120f",
+      South:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=730ead7642304d9eacd8b1b7627900dc",
+      North:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=120022e24c4646f49cde12f75bb53bdd",
+    };
 
     if (matchedProvinceUser) {
       setDashboardUrl(
@@ -24,6 +35,7 @@ const Accident = () => {
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398#province=${matchedProvinceUser.province}`
       );
+      setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
     } else if (matchedDistrictUser) {
       setDashboardUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed#district=${matchedDistrictUser.district}`
@@ -36,7 +48,10 @@ const Accident = () => {
         "https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed"
       );
       setMapUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed`
+        `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398`
+      );
+      setAppForEditUrl(
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8b1ad037d88f4d08b047204e5d4ab86d"
       );
     }
   }, [username]);
@@ -73,12 +88,9 @@ const Accident = () => {
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=200f4de1a580457488ecdd46c81796ca"
-              title="Tab 1 Content"
-            ></iframe>
+            <iframe src={appForEditUrl} title="Tab 1 Content"></iframe>
           </div>
-          {/* Maps*/}
+          {/*App for Edit*/}
         </TabPanel>
 
         <TabPanel>
