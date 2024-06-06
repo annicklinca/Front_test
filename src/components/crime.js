@@ -1,37 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { provinceUsers, districtUsers } from "../users";
 
 const Crime = () => {
-  const username = localStorage.getItem("username");
-  let iframeUrl;
+  const [dashboardUrl, setDashboardUrl] = useState("");
+  const [mapUrl, setMapUrl] = useState("");
+  const [appForEditUrl, setAppForEditUrl] = useState("");
 
-  const matchedProvinceUser = provinceUsers.find(
-    (user) => user.username === username
-  );
-  const matchedDistrictUser = districtUsers.find(
-    (user) => user.username === username
-  );
-  console.log(username);
+  useEffect(() => {
+    const provinceUrls = {
+      East: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bd54a3cc30874d5a9cc252194f1b3913",
+      Kigali:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae",
+      West: "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=714909f91a0047d595bc22b8a9aa5809",
+      South:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=561c0f7c63a34c259f52a595b14d8e52",
+      North:
+        "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=4a06a24790aa4eedaf2a1ef7d011dfe1",
+    };
+    const username = localStorage.getItem("username");
 
-  if (matchedProvinceUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#province=${matchedProvinceUser.province}`;
+    if (username) {
+      const matchedProvinceUser = provinceUsers.find(
+        (user) => user.username === username
+      );
+      const matchedDistrictUser = districtUsers.find(
+        (user) => user.username === username
+      );
 
-    console.log("Province User:", matchedProvinceUser.province);
-  } else if (matchedDistrictUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#district=${matchedDistrictUser.district}`;
-    console.log("District User:", matchedDistrictUser.district);
-  } else {
-    iframeUrl =
-      "https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36";
-  }
-  const iframe = document.getElementById("dashboardIframe");
-  if (iframe) {
-    iframe.src = iframeUrl;
-  }
-  const isTabVisible = !matchedDistrictUser;
+      if (matchedProvinceUser) {
+        setDashboardUrl(
+          `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#province=${matchedProvinceUser.province}`
+        );
+        setMapUrl(
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae#province=${matchedProvinceUser.province}`
+        );
+        setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
+      } else if (matchedDistrictUser) {
+        setDashboardUrl(
+          `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36#district=${matchedDistrictUser.district}`
+        );
+        setMapUrl(
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae#district=${matchedDistrictUser.district}`
+        );
+      } else {
+        setDashboardUrl(
+          `https://gis.police.gov.rw/portal/apps/dashboards/df725a81ad1340a9b5c3cdf8a5c44c36`
+        );
+        setMapUrl(
+          "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae"
+        );
+        setAppForEditUrl(
+          "https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae"
+        );
+      }
+    }
+  }, []);
+
+  const isTabVisible = !dashboardUrl.includes("district=");
+
   return (
     <div className="bg-gray-200">
       <Header currentPage="Crime" />
@@ -47,35 +76,29 @@ const Crime = () => {
         <TabPanel>
           {/* Dashboard */}
           <div className="iframe-container">
-            <iframe src={iframeUrl} title="Tab 1 Content"></iframe>
+            <iframe src={dashboardUrl} title="Dashboard"></iframe>
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15"
-              title="Tab 1 Content"
-            ></iframe>
+            <iframe src={mapUrl} title="Maps"></iframe>
           </div>
           {/* Maps*/}
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=3a255429cb9a4b8685cd1d9b28a67a37"
-              title="Tab 1 Content"
-            ></iframe>
+            <iframe src={appForEditUrl} title="App for Edit"></iframe>
           </div>
-          {/* Maps*/}
+          {/* Apps for Edit*/}
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
             <iframe
-              src="https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
+              src={`https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal`}
+              title="Form"
             ></iframe>
           </div>
           {/* Forms */}

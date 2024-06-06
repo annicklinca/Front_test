@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,34 +6,44 @@ import { provinceUsers, districtUsers, trafficUser } from "../users";
 
 const Accident = () => {
   const username = localStorage.getItem("username");
-  let iframeUrl;
+  const [dashboardUrl, setDashboardUrl] = useState("");
+  const [mapUrl, setMapUrl] = useState("");
 
-  const matchedProvinceUser = provinceUsers.find(
+  useEffect(() => {
+    const matchedProvinceUser = provinceUsers.find(
+      (user) => user.username === username
+    );
+    const matchedDistrictUser = districtUsers.find(
+      (user) => user.username === username
+    );
+
+    if (matchedProvinceUser) {
+      setDashboardUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed#province=${matchedProvinceUser.province}`
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398#province=${matchedProvinceUser.province}`
+      );
+    } else if (matchedDistrictUser) {
+      setDashboardUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed#district=${matchedDistrictUser.district}`
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398#district=${matchedDistrictUser.district}`
+      );
+    } else {
+      setDashboardUrl(
+        "https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed"
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed`
+      );
+    }
+  }, [username]);
+
+  const isTabVisible = !districtUsers.find(
     (user) => user.username === username
   );
-  const matchedDistrictUser = districtUsers.find(
-    (user) => user.username === username
-  );
-  const matchtraffic = trafficUser.find((user) => user.username === username);
-  console.log(username);
-
-  if (matchedProvinceUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed?portalUrl=https://gis.police.gov.rw/portal#province=${matchedProvinceUser.province}`;
-
-    console.log("Province User:", matchedProvinceUser.province);
-  } else if (matchedDistrictUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed?portalUrl=https://gis.police.gov.rw/portal#district=${matchedDistrictUser.district}`;
-    console.log("District User:", matchedDistrictUser.district);
-  } else {
-    iframeUrl =
-      "https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed?portalUrl=https://gis.police.gov.rw/portal";
-  }
-  const iframe = document.getElementById("dashboardIframe");
-  if (iframe) {
-    iframe.src = iframeUrl;
-  }
-  const isTabVisible = !matchedDistrictUser;
-  const isTrafficUser = !matchtraffic;
 
   return (
     <div className="bg-gray-200">
@@ -42,7 +52,7 @@ const Accident = () => {
         <div className="">
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
-            {isTrafficUser && isTabVisible && <Tab>Maps</Tab>}
+            {isTabVisible && <Tab>Maps</Tab>}
             {isTabVisible && <Tab>App for Edit</Tab>}
             <Tab>Form</Tab>
           </TabList>
@@ -50,16 +60,13 @@ const Accident = () => {
         <TabPanel>
           {/* Dashboard */}
           <div className="iframe-container">
-            <iframe src={iframeUrl} title="Tab 1 Content"></iframe>
+            <iframe src={dashboardUrl} title="Tab 1 Content"></iframe>
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
-            ></iframe>
+            <iframe src={mapUrl} title="Tab 1 Content"></iframe>
           </div>
           {/* Maps*/}
         </TabPanel>

@@ -10,7 +10,7 @@ const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+
   const submit = (e) => {
     e.preventDefault();
 
@@ -47,14 +47,36 @@ const Login = () => {
             position: "top-center",
           });
         } else {
-          localStorage.setItem("token", response.data.token);
+          const token = response.data.token;
+          // const expiresIn = 3600; // seconds
+          // const expirationTime = Math.floor(Date.now() / 1000) + expiresIn;
+
+          // Store token in local storage
+          localStorage.setItem("token", token);
           localStorage.setItem("username", username);
-          toast.success("You have successfully logged in");
+
+          const esriSAPIOAuth = {
+            "https://gis.police.gov.rw": {
+              appId: "dashboards",
+              codeVerifier: null,
+              expires: 1717601203,
+              refreshToken: null,
+              ssl: true,
+              stateID: null,
+              token: token,
+              userId: username,
+            },
+          };
+          window.sessionStorage.setItem(
+            "esriJSAPIOAuth",
+            JSON.stringify(esriSAPIOAuth)
+          );
+
+          // Navigate to the appropriate page based on the user type
           const isTrafficUser = trafficUser.some(
             (user) => user.username === username
           );
 
-          // Navigate to the appropriate page based on the user type
           if (isTrafficUser) {
             navigate("/Accident", { replace: true });
           } else {
@@ -86,7 +108,7 @@ const Login = () => {
           <form onSubmit={submit}>
             <div className="flex flex-col mb-5">
               <label
-                for="username"
+                htmlFor="username"
                 className="mb-1 text-xs font-semibold tracking-wide text-gray-600"
               >
                 Username:
@@ -109,7 +131,7 @@ const Login = () => {
 
             <div className="flex flex-col mb-6">
               <label
-                for="password"
+                htmlFor="password"
                 className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
               >
                 Password:

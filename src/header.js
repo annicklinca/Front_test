@@ -19,7 +19,7 @@ const Header = ({ currentPage }) => {
   const handleSignout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("esriJSAPIOAuth");
   };
 
   return (

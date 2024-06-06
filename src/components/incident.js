@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,32 +6,44 @@ import { provinceUsers, districtUsers } from "../users";
 
 const Incident = () => {
   const username = localStorage.getItem("username");
-  let iframeUrl;
+  const [dashboardUrl, setDashboardUrl] = useState("");
+  const [mapUrl, setMapUrl] = useState("");
 
-  const matchedProvinceUser = provinceUsers.find(
+  useEffect(() => {
+    const matchedProvinceUser = provinceUsers.find(
+      (user) => user.username === username
+    );
+    const matchedDistrictUser = districtUsers.find(
+      (user) => user.username === username
+    );
+
+    if (matchedProvinceUser) {
+      setDashboardUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310#province=${matchedProvinceUser.province}`
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#province=${matchedProvinceUser.province}`
+      );
+    } else if (matchedDistrictUser) {
+      setDashboardUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310#district=${matchedDistrictUser.district}`
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#district=${matchedDistrictUser.district}`
+      );
+    } else {
+      setDashboardUrl(
+        "https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310"
+      );
+      setMapUrl(
+        `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9`
+      );
+    }
+  }, [username]);
+
+  const isTabVisible = !districtUsers.find(
     (user) => user.username === username
   );
-  const matchedDistrictUser = districtUsers.find(
-    (user) => user.username === username
-  );
-  console.log(username);
-
-  if (matchedProvinceUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310?portalUrl=https://gis.police.gov.rw/portal#province=${matchedProvinceUser.province}`;
-
-    console.log("Province User:", matchedProvinceUser.province);
-  } else if (matchedDistrictUser) {
-    iframeUrl = `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310?portalUrl=https://gis.police.gov.rw/portal#district=${matchedDistrictUser.district}`;
-    console.log("District User:", matchedDistrictUser.district);
-  } else {
-    iframeUrl =
-      "https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310?portalUrl=https://gis.police.gov.rw/portal";
-  }
-  const iframe = document.getElementById("dashboardIframe");
-  if (iframe) {
-    iframe.src = iframeUrl;
-  }
-  const isTabVisible = !matchedDistrictUser;
 
   return (
     <div className="bg-gray-200">
@@ -47,42 +59,34 @@ const Incident = () => {
         </div>
         <TabPanel>
           <div className="iframe-container">
-            <iframe src={iframeUrl} title="Tab 1 Content"></iframe>
+            <iframe src={dashboardUrl} title="Dashboard" />
           </div>
-          {/* Add content for Tab 1 */}
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
-            ></iframe>
+            <iframe src={mapUrl} title="Maps" />
           </div>
-          {/* Add content for Tab 2 */}
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
             <iframe
               src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=c0c6f8fd88784e499714327cd04f0944"
-              title="Tab 1 Content"
-            ></iframe>
+              title="App for Edit"
+            />
           </div>
-          {/* Maps*/}
         </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
             <iframe
               src="https://survey123.arcgis.com/share/8d894a6097084809a69a7b55b90903e8?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
-            ></iframe>
+              title="Form"
+            />
           </div>
-          {/* Add content for Tab 3 */}
         </TabPanel>
       </Tabs>
-      {/* Your Crime page content goes here */}
     </div>
   );
 };
