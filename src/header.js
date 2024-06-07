@@ -17,9 +17,29 @@ const Header = ({ currentPage }) => {
     !matchtraffic && !(matchedProvinceUser || matchedDistrictUser);
   const trafficVisible = !matchtraffic;
   const handleSignout = () => {
+    // Clear localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+
+    // Clear sessionStorage
     window.sessionStorage.removeItem("esriJSAPIOAuth");
+
+    // Optionally clear all localStorage and sessionStorage
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Function to clear specific cookies
+    const clearCookies = (domain, path) => {
+      const cookies = document.cookie.split("; ");
+      for (const cookie of cookies) {
+        const name = cookie.split("=")[0];
+        document.cookie = `${name}=; domain=${domain}; path=${path}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      }
+    };
+
+    // Clear cookies for the specific domain and path
+    clearCookies("gis.police.gov.rw", "/");
+    clearCookies("gis.police.gov.rw", "/portal");
   };
 
   return (

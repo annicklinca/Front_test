@@ -99,7 +99,7 @@ const Crime = () => {
         <TabPanel>
           <div className="iframe-container">
             <iframe
-              src={`https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5`}
+              src={`https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=da9b404fa8ee4505b1c5acca51177f74`}
               title="Time profile map"
             ></iframe>
           </div>

@@ -59,6 +59,9 @@ const Incident = () => {
   const isTabVisible = !districtUsers.find(
     (user) => user.username === username
   );
+  const isTabVisibleP = !provinceUsers.find(
+    (user) => user.username === username
+  );
 
   return (
     <div className="bg-gray-200">
@@ -69,6 +72,7 @@ const Incident = () => {
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Maps</Tab>}
             {isTabVisible && <Tab>App for Edit</Tab>}
+            {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
             <Tab>Form</Tab>
           </TabList>
         </div>
@@ -87,6 +91,15 @@ const Incident = () => {
         <TabPanel>
           <div className="iframe-container">
             <iframe src={appForEditUrl} title="App for Edit" />
+          </div>
+        </TabPanel>
+
+        <TabPanel>
+          <div className="iframe-container">
+            <iframe
+              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
+              title="Time Profile Maps"
+            />
           </div>
         </TabPanel>
 

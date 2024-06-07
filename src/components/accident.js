@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { provinceUsers, districtUsers, trafficUser } from "../users";
+import { provinceUsers, districtUsers } from "../users";
 
 const Accident = () => {
   const username = localStorage.getItem("username");
@@ -59,6 +59,9 @@ const Accident = () => {
   const isTabVisible = !districtUsers.find(
     (user) => user.username === username
   );
+  const istTabVisibleP = !provinceUsers.find(
+    (user) => user.username === username
+  );
 
   return (
     <div className="bg-gray-200">
@@ -68,7 +71,8 @@ const Accident = () => {
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Maps</Tab>}
-            {isTabVisible && <Tab>App for Edit</Tab>}
+            {isTabVisible && istTabVisibleP && <Tab>App for Edit</Tab>}
+            {isTabVisible && istTabVisibleP && <Tab>Time Profile Maps</Tab>}
             <Tab>Form</Tab>
           </TabList>
         </div>
@@ -91,6 +95,16 @@ const Accident = () => {
             <iframe src={appForEditUrl} title="Tab 1 Content"></iframe>
           </div>
           {/*App for Edit*/}
+        </TabPanel>
+
+        <TabPanel>
+          <div className="iframe-container">
+            <iframe
+              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bad79599c4064e219db792d16e20dc08"
+              title="Time Profile Maps"
+            ></iframe>
+          </div>
+          {/* Time Profile Maps */}
         </TabPanel>
 
         <TabPanel>
