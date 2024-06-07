@@ -3,6 +3,8 @@ import "react-tabs/style/react-tabs.css";
 import logo from "./RNP_LOGO.png";
 import "./iframe.css";
 import { provinceUsers, districtUsers, trafficUser } from "./users";
+import { loadModules } from "esri-loader";
+import { toast, ToastContainer } from "react-toastify";
 
 const Header = ({ currentPage }) => {
   const username = localStorage.getItem("username");
@@ -17,29 +19,32 @@ const Header = ({ currentPage }) => {
     !matchtraffic && !(matchedProvinceUser || matchedDistrictUser);
   const trafficVisible = !matchtraffic;
   const handleSignout = () => {
-    // Clear localStorage
+    // Clear local storage
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-
-    // Clear sessionStorage
-    window.sessionStorage.removeItem("esriJSAPIOAuth");
-
-    // Optionally clear all localStorage and sessionStorage
+    localStorage.removeItem("esriJSAPIOAuth");
     localStorage.clear();
     sessionStorage.clear();
+    const cookies = document.cookie.split(";");
+    for (const cookie of cookies) {
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
 
-    // Function to clear specific cookies
-    const clearCookies = (domain, path) => {
-      const cookies = document.cookie.split("; ");
-      for (const cookie of cookies) {
-        const name = cookie.split("=")[0];
-        document.cookie = `${name}=; domain=${domain}; path=${path}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-      }
-    };
-
-    // Clear cookies for the specific domain and path
-    clearCookies("gis.police.gov.rw", "/");
-    clearCookies("gis.police.gov.rw", "/portal");
+    // Sign out from ArcGIS Enterprise and redirect to login page
+    loadModules(["esri/identity/IdentityManager"])
+      .then(([IdentityManager]) => {
+        IdentityManager.destroyCredentials();
+        toast.success("Successfully logged out!", { position: "top-center" });
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("ArcGIS signout error: ", err);
+        toast.error("Error during logout. Please try again.");
+      });
   };
 
   return (
@@ -106,6 +111,7 @@ const Header = ({ currentPage }) => {
             >
               Logout
             </a>
+            <ToastContainer />
           </div>
         </nav>
       </header>
