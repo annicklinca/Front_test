@@ -88,5 +88,5 @@ export const trafficUser = [
   { username: "Traffic1" },
   { username: "Traffic2" },
   { username: "Traffic3" },
-  { username: "comm_traffic" },
+  { username: "Comm_Traffic" },
 ];

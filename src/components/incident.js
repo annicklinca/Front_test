@@ -30,7 +30,7 @@ const Incident = () => {
 
     if (matchedProvinceUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310#province=${matchedProvinceUser.province}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c#province=${matchedProvinceUser.province}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#province=${matchedProvinceUser.province}`
@@ -38,14 +38,14 @@ const Incident = () => {
       setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
     } else if (matchedDistrictUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310#district=${matchedDistrictUser.district}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c#district=${matchedDistrictUser.district}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#district=${matchedDistrictUser.district}`
       );
     } else {
       setDashboardUrl(
-        "https://gis.police.gov.rw/portal/apps/dashboards/b8e3f4d5811f4c7c849efd24b805c310"
+        "https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c"
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9`
@@ -70,7 +70,7 @@ const Incident = () => {
         <div className="">
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
-            {isTabVisible && <Tab>Maps</Tab>}
+            {isTabVisible && <Tab>Compare Maps</Tab>}
             {isTabVisible && <Tab>App for Edit</Tab>}
             {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
             <Tab>Form</Tab>
@@ -82,26 +82,32 @@ const Incident = () => {
           </div>
         </TabPanel>
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe src={mapUrl} title="Maps" />
-          </div>
-        </TabPanel>
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={mapUrl} title="Maps" />
+            </div>
+          </TabPanel>
+        )}
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe src={appForEditUrl} title="App for Edit" />
-          </div>
-        </TabPanel>
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={appForEditUrl} title="App for Edit" />
+            </div>
+          </TabPanel>
+        )}
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
-              title="Time Profile Maps"
-            />
-          </div>
-        </TabPanel>
+        {isTabVisible && isTabVisibleP && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe
+                src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
+                title="Time Profile Maps"
+              />
+            </div>
+          </TabPanel>
+        )}
 
         <TabPanel>
           <div className="iframe-container">

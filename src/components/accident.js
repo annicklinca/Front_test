@@ -30,7 +30,7 @@ const Accident = () => {
 
     if (matchedProvinceUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed#province=${matchedProvinceUser.province}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/5e1d98f47ea6470d991cc75d61cc4f0b#province=${matchedProvinceUser.province}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398#province=${matchedProvinceUser.province}`
@@ -38,14 +38,14 @@ const Accident = () => {
       setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
     } else if (matchedDistrictUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed#district=${matchedDistrictUser.district}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/5e1d98f47ea6470d991cc75d61cc4f0b#district=${matchedDistrictUser.district}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398#district=${matchedDistrictUser.district}`
       );
     } else {
       setDashboardUrl(
-        "https://gis.police.gov.rw/portal/apps/dashboards/77686968b49c449da3c861c25582f0ed"
+        "https://gis.police.gov.rw/portal/apps/dashboards/5e1d98f47ea6470d991cc75d61cc4f0b"
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398`
@@ -70,10 +70,10 @@ const Accident = () => {
         <div className="">
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
-            {isTabVisible && <Tab>Maps</Tab>}
-            {isTabVisible && istTabVisibleP && <Tab>App for Edit</Tab>}
+            {isTabVisible && <Tab>Compare Maps</Tab>}
             {isTabVisible && istTabVisibleP && <Tab>Time Profile Maps</Tab>}
-            <Tab>Form</Tab>
+            {isTabVisible && istTabVisibleP && <Tab>App for Edit</Tab>}
+            {isTabVisible && istTabVisibleP && <Tab>Form</Tab>}
           </TabList>
         </div>
         <TabPanel>
@@ -83,39 +83,47 @@ const Accident = () => {
           </div>
         </TabPanel>
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe src={mapUrl} title="Tab 1 Content"></iframe>
-          </div>
-          {/* Maps*/}
-        </TabPanel>
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={mapUrl} title="Tab 1 Content"></iframe>
+            </div>
+            {/* Maps*/}
+          </TabPanel>
+        )}
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe src={appForEditUrl} title="Tab 1 Content"></iframe>
-          </div>
-          {/*App for Edit*/}
-        </TabPanel>
+        {isTabVisible && istTabVisibleP && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe
+                src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bad79599c4064e219db792d16e20dc08"
+                title="Time Profile Maps"
+              ></iframe>
+            </div>
+            {/* Time Profile Maps */}
+          </TabPanel>
+        )}
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bad79599c4064e219db792d16e20dc08"
-              title="Time Profile Maps"
-            ></iframe>
-          </div>
-          {/* Time Profile Maps */}
-        </TabPanel>
+        {isTabVisible && istTabVisibleP && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={appForEditUrl} title="Tab 1 Content"></iframe>
+            </div>
+            {/*App for Edit*/}
+          </TabPanel>
+        )}
 
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe
-              src="https://survey123.arcgis.com/share/22c2786f70c04e8d8c788d5cd433783e?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
-            ></iframe>
-          </div>
-          {/* Forms */}
-        </TabPanel>
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe
+                src="https://survey123.arcgis.com/share/22c2786f70c04e8d8c788d5cd433783e?portalUrl=https://gis.police.gov.rw/portal"
+                title="Tab 1 Content"
+              ></iframe>
+            </div>
+            {/* Forms */}
+          </TabPanel>
+        )}
       </Tabs>
       {/* Your Crime page content goes here */}
     </div>

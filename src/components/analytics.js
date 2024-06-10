@@ -10,19 +10,10 @@ const Analytics = () => {
       <Tabs>
         <div className="">
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
-            <Tab>Time Maps</Tab>
+            {/* <Tab>Time Maps</Tab> */}
             <Tab>Analytics App</Tab>
           </TabList>
         </div>
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe
-              src="https://gis.police.gov.rw/portal/apps/dashboards/f1390722cdf84dd88ed4f388548d0da5?portalUrl=https://gis.police.gov.rw/portal"
-              title="Tab 1 Content"
-            ></iframe>
-          </div>
-          {/* Add content for Tab 1 */}
-        </TabPanel>
 
         <TabPanel>
           <div className="iframe-container">
