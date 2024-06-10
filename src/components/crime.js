@@ -72,8 +72,8 @@ const Crime = () => {
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Compare Maps</Tab>}
-            {isTabVisible && <Tab>App for Edit</Tab>}
             {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
+            {isTabVisible && <Tab>App for Edit</Tab>}
             <Tab>Form</Tab>
           </TabList>
         </div>
@@ -93,15 +93,6 @@ const Crime = () => {
           </TabPanel>
         )}
 
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={appForEditUrl} title="App for Edit"></iframe>
-            </div>
-            {/* Apps for Edit*/}
-          </TabPanel>
-        )}
-
         {isTabVisible && isTabVisibleP && (
           <TabPanel>
             <div className="iframe-container">
@@ -111,6 +102,15 @@ const Crime = () => {
               ></iframe>
             </div>
             {/* Time profile map */}
+          </TabPanel>
+        )}
+
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={appForEditUrl} title="App for Edit"></iframe>
+            </div>
+            {/* Apps for Edit*/}
           </TabPanel>
         )}
 

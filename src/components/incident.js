@@ -71,8 +71,8 @@ const Incident = () => {
           <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Compare Maps</Tab>}
-            {isTabVisible && <Tab>App for Edit</Tab>}
             {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
+            {isTabVisible && <Tab>App for Edit</Tab>}
             <Tab>Form</Tab>
           </TabList>
         </div>
@@ -90,14 +90,6 @@ const Incident = () => {
           </TabPanel>
         )}
 
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={appForEditUrl} title="App for Edit" />
-            </div>
-          </TabPanel>
-        )}
-
         {isTabVisible && isTabVisibleP && (
           <TabPanel>
             <div className="iframe-container">
@@ -105,6 +97,14 @@ const Incident = () => {
                 src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
                 title="Time Profile Maps"
               />
+            </div>
+          </TabPanel>
+        )}
+
+        {isTabVisible && (
+          <TabPanel>
+            <div className="iframe-container">
+              <iframe src={appForEditUrl} title="App for Edit" />
             </div>
           </TabPanel>
         )}
