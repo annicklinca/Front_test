@@ -54,6 +54,8 @@ const Login = () => {
           // Store token in local storage
           localStorage.setItem("token", token);
           localStorage.setItem("username", username);
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("username", username);
 
           const esriSAPIOAuth = {
             "https://gis.police.gov.rw": {
