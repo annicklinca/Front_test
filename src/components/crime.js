@@ -117,7 +117,7 @@ const Crime = () => {
         <TabPanel>
           <div className="iframe-container">
             <iframe
-              src={`https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal&token=${token}`}
+              src={`https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal`}
               title="Form"
             ></iframe>
           </div>

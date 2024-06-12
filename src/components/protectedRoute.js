@@ -7,6 +7,8 @@ function ProtectedRoute(props) {
     !!localStorage.getItem("token")
   );
 
+  console.log({ isAuthenticated });
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/");
