@@ -6,7 +6,9 @@ import Incident from "./components/incident";
 import Analytics from "./components/analytics";
 import Login from "./login";
 import Accident from "./components/accident";
+import Operations from "./components/operations"
 import Report from "./report";
+import ProtectedRoute from "./components/protectedRoute";
 
 function App() {
   return (
@@ -14,12 +16,54 @@ function App() {
       <div className="App">
         <Routes>
           {" "}
-          {/* Use Routes instead of Switch */}
-          <Route path="/Crime" element={<Crime />} />
-          <Route path="/Incident" element={<Incident />} />
-          <Route path="/Accident" element={<Accident />} />
-          <Route path="/Analytics" element={<Analytics />} />
-          <Route path="/Report" element={<Report />} />
+          <Route
+            path="/Crime"
+            element={
+              <ProtectedRoute>
+                <Crime />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Incident"
+            element={
+              <ProtectedRoute>
+                <Incident />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Accident"
+            element={
+              <ProtectedRoute>
+                <Accident />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Analytics"
+            element={
+              <ProtectedRoute>
+                <Analytics />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Operations"
+            element={
+              <ProtectedRoute>
+                <Operations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Report"
+            element={
+              <ProtectedRoute>
+                <Report />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>

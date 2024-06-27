@@ -59,7 +59,7 @@ const Header = ({ currentPage }) => {
             <a href="#@" className="">
               <img className=" w-12 inline-block" src={logo} alt="" />
               <span className="font-bold text-blue-900 px-2 inline-block">
-                Crimes and Incidents Management
+                Crimes and Incidents Management System
               </span>
             </a>
           </div>
@@ -102,6 +102,18 @@ const Header = ({ currentPage }) => {
                 }`}
               >
                 Analytics
+              </a>
+            )}
+            {trafficVisible && (
+              <a
+                href="/Operations"
+                className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
+                  currentPage === "Operations"
+                    ? "border-b-2 border-blue-800"
+                    : ""
+                }`}
+              >
+                Operations
               </a>
             )}
             <a

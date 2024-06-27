@@ -30,7 +30,7 @@ const Incident = () => {
 
     if (matchedProvinceUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c#province=${matchedProvinceUser.province}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/9f89e54289934751b2f630179bd7045e#province=${matchedProvinceUser.province}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#province=${matchedProvinceUser.province}`
@@ -38,14 +38,14 @@ const Incident = () => {
       setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
     } else if (matchedDistrictUser) {
       setDashboardUrl(
-        `https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c#district=${matchedDistrictUser.district}`
+        `https://gis.police.gov.rw/portal/apps/dashboards/9f89e54289934751b2f630179bd7045e#district=${matchedDistrictUser.district}`
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9#district=${matchedDistrictUser.district}`
       );
     } else {
       setDashboardUrl(
-        "https://gis.police.gov.rw/portal/apps/dashboards/4ce5895c59bc43da9997280867e7b82c"
+        "https://gis.police.gov.rw/portal/apps/dashboards/9f89e54289934751b2f630179bd7045e"
       );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/021c48cb5a17407c887df2e85056a4d9`
