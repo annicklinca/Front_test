@@ -6,6 +6,7 @@ import Incident from "./components/incident";
 import Analytics from "./components/analytics";
 import Login from "./login";
 import Accident from "./components/accident";
+import Operations from "./components/operations"
 import Report from "./report";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -44,6 +45,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Analytics />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Operations"
+            element={
+              <ProtectedRoute>
+                <Operations />
               </ProtectedRoute>
             }
           />
