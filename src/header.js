@@ -2,9 +2,9 @@ import React from "react";
 import "react-tabs/style/react-tabs.css";
 import logo from "./RNP_LOGO.png";
 import "./iframe.css";
-import { provinceUsers, districtUsers, trafficUser } from "./users";
 import { loadModules } from "esri-loader";
 import { toast, ToastContainer } from "react-toastify";
+import { provinceUsers, districtUsers, trafficUser, asocUser } from "./users";
 
 const Header = ({ currentPage }) => {
   const username = localStorage.getItem("username");
@@ -15,9 +15,11 @@ const Header = ({ currentPage }) => {
     (user) => user.username === username
   );
   const matchtraffic = trafficUser.find((user) => user.username === username);
+  const matchAsoc = asocUser.find((user) => user.username === username);
   const isAnalyticsVisible =
     !matchtraffic && !(matchedProvinceUser || matchedDistrictUser);
   const trafficVisible = !matchtraffic;
+  const asocVisible = !matchAsoc;
   const handleSignout = () => {
     // Clear local storage
     localStorage.removeItem("token");
@@ -84,14 +86,16 @@ const Header = ({ currentPage }) => {
                 Incidents
               </a>
             )}
-            <a
-              href="/Accident"
-              className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
-                currentPage === "Accident" ? "border-b-2 border-blue-800" : ""
-              }`}
-            >
-              Accidents
-            </a>
+            {asocVisible && (
+              <a
+                href="/Accident"
+                className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
+                  currentPage === "Accident" ? "border-b-2 border-blue-800" : ""
+                }`}
+              >
+                Accidents
+              </a>
+            )}
             {isAnalyticsVisible && (
               <a
                 href="/Analytics"
@@ -104,7 +108,7 @@ const Header = ({ currentPage }) => {
                 Analytics
               </a>
             )}
-            {trafficVisible && (
+            {trafficVisible && asocVisible && (
               <a
                 href="/Operations"
                 className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${

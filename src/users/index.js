@@ -91,4 +91,4 @@ export const trafficUser = [
   { username: "Comm_Traffic" },
 ];
 
-export const asoc = [{ username: "Operation_ASOC" }];
+export const asocUser = [{ username: "Operation_ASOC" }];
