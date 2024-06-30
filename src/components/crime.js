@@ -21,38 +21,38 @@ const Crime = () => {
       (user) => user.username === username
     );
     const provinceUrls = {
-      East: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bd54a3cc30874d5a9cc252194f1b3913?portalUrl=https://gis.police.gov.rw/portal&token=${token}`,
-      Kigali: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae?portalUrl=https://gis.police.gov.rw/portal&token=${token}`,
-      West: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=714909f91a0047d595bc22b8a9aa5809?portalUrl=https://gis.police.gov.rw/portal&token=${token}`,
-      South: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=561c0f7c63a34c259f52a595b14d8e52?portalUrl=https://gis.police.gov.rw/portal&token=${token}`,
-      North: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=4a06a24790aa4eedaf2a1ef7d011dfe1?portalUrl=https://gis.police.gov.rw/portal&token=${token}`,
+      East: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bd54a3cc30874d5a9cc252194f1b3913`,
+      Kigali: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=8bdf90e9ac264b0db316ffd61536f5ae`,
+      West: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=714909f91a0047d595bc22b8a9aa5809`,
+      South: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=561c0f7c63a34c259f52a595b14d8e52`,
+      North: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=4a06a24790aa4eedaf2a1ef7d011dfe1`,
     };
 
     if (username) {
       if (matchedProvinceUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd?portalUrl=https://gis.police.gov.rw/portal&token=${token}#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd#province=${matchedProvinceUser.province}`
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15?portalUrl=https://gis.police.gov.rw/portal&token=${token}#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#province=${matchedProvinceUser.province}`
         );
         setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
       } else if (matchedDistrictUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd?portalUrl=https://gis.police.gov.rw/portal&token=${token}#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd#district=${matchedDistrictUser.district}`
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15?portalUrl=https://gis.police.gov.rw/portal&token=${token}#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`
         );
       } else {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd?portalUrl=https://gis.police.gov.rw/portal&token=${token}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd`
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15?portalUrl=https://gis.police.gov.rw/portal&token=${token}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`
         );
         setAppForEditUrl(
-          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b?portalUrl=https://gis.police.gov.rw/portal&token=${token}`
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`
         );
       }
     }
