@@ -6,7 +6,9 @@ import Incident from "./components/incident";
 import Analytics from "./components/analytics";
 import Login from "./login";
 import Accident from "./components/accident";
-import Operations from "./components/operations"
+import Flash from "./components/flash";
+import Map from "./components/map";
+import Operations from "./components/operations";
 import Report from "./report";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -61,6 +63,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <Report />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Flash"
+            element={
+              <ProtectedRoute>
+                <Flash />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Map"
+            element={
+              <ProtectedRoute>
+                <Map />
               </ProtectedRoute>
             }
           />

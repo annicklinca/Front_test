@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "react-tabs/style/react-tabs.css";
 import logo from "./RNP_LOGO.png";
 import "./iframe.css";
 import { loadModules } from "esri-loader";
 import { toast, ToastContainer } from "react-toastify";
-import { provinceUsers, districtUsers, trafficUser, asocUser } from "./users";
+import {
+  provinceUsers,
+  districtUsers,
+  trafficUser,
+  asocUser,
+  flashUser,
+} from "./users";
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const Header = ({ currentPage }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const username = localStorage.getItem("username");
   const matchedProvinceUser = provinceUsers.find(
     (user) => user.username === username
@@ -20,6 +30,9 @@ const Header = ({ currentPage }) => {
     !matchtraffic && !(matchedProvinceUser || matchedDistrictUser);
   const trafficVisible = !matchtraffic;
   const asocVisible = !matchAsoc;
+
+  const matchFlash = flashUser.find((user) => user.username === username);
+
   const handleSignout = () => {
     // Clear local storage
     localStorage.removeItem("token");
@@ -51,16 +64,15 @@ const Header = ({ currentPage }) => {
 
   return (
     <>
-      {/* First header */}
       <header className="bg-gray-200">
         <nav
           className="mx-2 flex max-w-16xl items-center justify-between p-2.5 lg:px-8"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#@" className="">
-              <img className=" w-12 inline-block" src={logo} alt="" />
-              <span className="font-bold text-blue-900 px-2 inline-block">
+            <a href="#@" className="flex items-center">
+              <img className="w-12" src={logo} alt="RNP Logo" />
+              <span className="font-bold text-blue-900 px-2">
                 Crimes and Incidents Management System
               </span>
             </a>
@@ -120,6 +132,26 @@ const Header = ({ currentPage }) => {
                 Operations
               </a>
             )}
+            {matchFlash && (
+              <a
+                href="/Flash"
+                className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
+                  currentPage === "Flash" ? "border-b-2 border-blue-800" : ""
+                }`}
+              >
+                Flash Report
+              </a>
+            )}
+            {matchFlash && (
+              <a
+                href="/Map"
+                className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
+                  currentPage === "Map" ? "border-b-2 border-blue-800" : ""
+                }`}
+              >
+                Deplyoment Map
+              </a>
+            )}
             <a
               href="/"
               onClick={handleSignout}
@@ -128,6 +160,114 @@ const Header = ({ currentPage }) => {
               Logout
             </a>
             <ToastContainer />
+          </div>
+          <div className="lg:hidden flex items-center">
+            <Menu as="div" className="relative inline-block text-left">
+              <Menu.Button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-blue-800"
+              >
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              </Menu.Button>
+              <Transition
+                show={menuOpen}
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    {trafficVisible && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Crime"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Crimes
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {trafficVisible && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Incident"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Incidents
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {asocVisible && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Accident"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Accidents
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {isAnalyticsVisible && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Analytics"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Analytics
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {trafficVisible && asocVisible && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Operations"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Operations
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="/"
+                          onClick={handleSignout}
+                          className={`${
+                            active ? "bg-gray-100" : ""
+                          } text-gray-700 block px-4 py-2 text-sm`}
+                        >
+                          Logout
+                        </a>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
           </div>
         </nav>
       </header>

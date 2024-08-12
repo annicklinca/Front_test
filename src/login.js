@@ -48,10 +48,7 @@ const Login = () => {
           });
         } else {
           const token = response.data.token;
-          // const expiresIn = 3600; // seconds
-          // const expirationTime = Math.floor(Date.now() / 1000) + expiresIn;
 
-          // Store token in local storage
           localStorage.setItem("token", token);
           localStorage.setItem("username", username);
           sessionStorage.setItem("token", token);
@@ -74,7 +71,6 @@ const Login = () => {
             JSON.stringify(esriSAPIOAuth)
           );
 
-          // Navigate to the appropriate page based on the user type
           const isTrafficUser = trafficUser.some(
             (user) => user.username === username
           );
@@ -97,16 +93,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-900">
-      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md">
-        <div className="font-bold self-center text-xl sm:text-3xl text-gray-800">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-900 px-4">
+      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-full max-w-md">
+        <div className="font-bold self-center text-xl sm:text-3xl text-gray-800 mb-4">
           <center>
             <img alt="" src={logo} className="w-24 h-24" />
             <h2>Crimes and Incidents Management System</h2>
           </center>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-6">
           <form onSubmit={submit}>
             <div className="flex flex-col mb-5">
               <label
@@ -117,16 +113,16 @@ const Login = () => {
               </label>
 
               <div className="relative">
-                <div className=" inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
                   <i className="fas fa-user text-blue-500"></i>
                 </div>
                 <input
                   ref={usernameRef}
-                  id="text"
-                  type="FormControlInput1"
-                  className=" text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                  id="username"
+                  type="text"
+                  className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                   placeholder="Enter your username"
-                  required=""
+                  required
                 />
               </div>
             </div>
@@ -152,10 +148,9 @@ const Login = () => {
                   ref={passwordRef}
                   id="password"
                   type={show ? "text" : "password"}
-                  name="FormControlInput2"
                   className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                   placeholder="Enter your password"
-                  required=""
+                  required
                 />
               </div>
             </div>
