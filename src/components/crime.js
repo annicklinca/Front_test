@@ -70,7 +70,7 @@ const Crime = () => {
       <Header currentPage="Crime" />
       <Tabs>
         <div className="">
-          <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
+          <TabList className="bg-blue-900 border-none font-normal p-2 text-sm text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Compare Maps</Tab>}
             {isTabVisible && isTabVisibleP && isTabvisibleA && (

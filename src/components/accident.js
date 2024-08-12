@@ -8,6 +8,7 @@ const Accident = () => {
   const username = localStorage.getItem("username");
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
+  const [routeUrl, setRouteUrl] = useState("");
   const [appForEditUrl, setAppForEditUrl] = useState("");
 
   useEffect(() => {
@@ -47,6 +48,9 @@ const Accident = () => {
       setDashboardUrl(
         "https://gis.police.gov.rw/portal/apps/dashboards/5e1d98f47ea6470d991cc75d61cc4f0b"
       );
+      setRouteUrl(
+        "https://gis.police.gov.rw/portal/apps/experiencebuilder/experience/?id=862e6103530c405da3c5b50c74d13e7a&page=2D-View"
+      );
       setMapUrl(
         `https://gis.police.gov.rw/portal/apps/dashboards/abd3d14cc9574d84bce461c1c75f6398`
       );
@@ -68,10 +72,11 @@ const Accident = () => {
       <Header currentPage="Accident" />
       <Tabs>
         <div className="">
-          <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
+          <TabList className="bg-blue-900  border-none font-normal p-2 text-sm text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Compare Maps</Tab>}
             {isTabVisible && istTabVisibleP && <Tab>Time Profile Maps</Tab>}
+            {isTabVisible && istTabVisibleP && <Tab>Route Safe Planner</Tab>}
             {isTabVisible && istTabVisibleP && <Tab>App for Edit</Tab>}
             {isTabVisible && istTabVisibleP && <Tab>Form</Tab>}
           </TabList>
@@ -103,7 +108,14 @@ const Accident = () => {
             {/* Time Profile Maps */}
           </TabPanel>
         )}
-
+        {isTabVisible && istTabVisibleP && (
+          <TabPanel>
+            {/* Safe Planner */}
+            <div className="iframe-container">
+              <iframe src={routeUrl} title="Tab 1 Content"></iframe>
+            </div>
+          </TabPanel>
+        )}
         {isTabVisible && istTabVisibleP && (
           <TabPanel>
             <div className="iframe-container">

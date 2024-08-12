@@ -9,7 +9,7 @@ const Operations = () => {
       <Header currentPage="Operations" />
       <Tabs>
         <div className="">
-          <TabList className="bg-blue-900 border-none font-semibold p-2 text-white">
+          <TabList className="bg-blue-900 border-none font-normal p-2 text-sm text-white">
             {/* <Tab>Time Maps</Tab> */}
             <Tab>Target Operations Form</Tab>
           </TabList>
