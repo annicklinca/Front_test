@@ -251,6 +251,34 @@ const Header = ({ currentPage }) => {
                         )}
                       </Menu.Item>
                     )}
+                    {matchFlash && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Flash"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Flash
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {matchFlash && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Map"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Deplyoment Map
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
                     <Menu.Item>
                       {({ active }) => (
                         <a
