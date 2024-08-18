@@ -72,9 +72,7 @@ const Header = ({ currentPage }) => {
           <div className="flex lg:flex-1">
             <a href="#@" className="flex items-center">
               <img className="w-12" src={logo} alt="RNP Logo" />
-              <span className="font-bold text-blue-900 px-2">
-                Crimes and Incidents Management System
-              </span>
+              <span className="font-bold text-blue-900 px-2">CIMS</span>
             </a>
           </div>
           <div className="hidden lg:flex lg:gap-x-10 pl-8">
