@@ -108,5 +108,6 @@ export const flashUser = [
   { username: "rnp_user7" },
   { username: "rnp_user8" },
   { username: "admin" },
+  { username: "digpops" },
   { username: "commit@police.gov.rw" },
 ];
