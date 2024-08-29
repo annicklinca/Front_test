@@ -98,7 +98,7 @@ const Login = () => {
         <div className="font-bold self-center text-xl sm:text-3xl text-gray-800 mb-4">
           <center>
             <img alt="" src={logo} className="w-24 h-24" />
-            <h2>Crimes and Incidents Management System</h2>
+            <h2>Incidents Management System</h2>
           </center>
         </div>
 
