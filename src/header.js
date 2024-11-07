@@ -147,7 +147,19 @@ const Header = ({ currentPage }) => {
                   currentPage === "Map" ? "border-b-2 border-blue-800" : ""
                 }`}
               >
-                Deplyoment Map
+                Deployment Map
+              </a>
+            )}
+            {matchFlash && (
+              <a
+                href="/Experience"
+                className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
+                  currentPage === "Experience"
+                    ? "border-b-2 border-blue-800"
+                    : ""
+                }`}
+              >
+                Experience Map
               </a>
             )}
             <a
@@ -272,7 +284,21 @@ const Header = ({ currentPage }) => {
                               active ? "bg-gray-100" : ""
                             } text-gray-700 block px-4 py-2 text-sm`}
                           >
-                            Deplyoment Map
+                            Deployment Map
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {matchFlash && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/MExperienceap"
+                            className={`${
+                              active ? "bg-gray-100" : ""
+                            } text-gray-700 block px-4 py-2 text-sm`}
+                          >
+                            Experience Map
                           </a>
                         )}
                       </Menu.Item>

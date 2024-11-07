@@ -11,6 +11,7 @@ import Map from "./components/map";
 import Operations from "./components/operations";
 import Report from "./report";
 import ProtectedRoute from "./components/protectedRoute";
+import Experience from "./components/experience";
 
 function App() {
   return (
@@ -79,6 +80,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Map />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Experience"
+            element={
+              <ProtectedRoute>
+                <Experience />
               </ProtectedRoute>
             }
           />
