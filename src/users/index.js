@@ -124,4 +124,6 @@ export const topoUser = [
   { username: "admin" },
   { username: "digpops" },
   { username: "commit@police.gov.rw" },
+  { username: "Operation_Room" },
+  { username: "Operation_Room01" },
 ];
