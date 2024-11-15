@@ -111,3 +111,17 @@ export const flashUser = [
   { username: "digpops" },
   { username: "commit@police.gov.rw" },
 ];
+
+export const topoUser = [
+  { username: "rnp_publisher" },
+  { username: "rnp_user2" },
+  { username: "rnp_user3" },
+  { username: "rnp_user4" },
+  { username: "rnp_user5" },
+  { username: "rnp_user6" },
+  { username: "rnp_user7" },
+  { username: "rnp_user8" },
+  { username: "admin" },
+  { username: "digpops" },
+  { username: "commit@police.gov.rw" },
+];

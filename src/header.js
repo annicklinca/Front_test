@@ -10,6 +10,7 @@ import {
   trafficUser,
   asocUser,
   flashUser,
+  topoUser,
 } from "./users";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -32,6 +33,8 @@ const Header = ({ currentPage }) => {
   const asocVisible = !matchAsoc;
 
   const matchFlash = flashUser.find((user) => user.username === username);
+
+  const matchTopo = topoUser.find((user) => user.username === username);
 
   const handleSignout = () => {
     // Clear local storage
@@ -150,7 +153,7 @@ const Header = ({ currentPage }) => {
                 Deployment Map
               </a>
             )}
-            {matchFlash && (
+            {matchTopo && (
               <a
                 href="/Experience"
                 className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${
