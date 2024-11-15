@@ -94,7 +94,7 @@ export const trafficUser = [
 export const asocUser = [{ username: "ASOC_Operation" }];
 
 export const flashUser = [
-  { username: "RPC_Central	" },
+  { username: "RPC_Central" },
   { username: "RPC_Eastern" },
   { username: "RPC_Northern" },
   { username: "RPC_Southern" },
