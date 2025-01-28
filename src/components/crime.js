@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { provinceUsers, districtUsers, asocUser } from "../users";
+import { provinceUsers, districtUsers, asocUser, presUser } from "../users";
 
 const Crime = () => {
   const username = localStorage.getItem("username");
@@ -28,6 +28,36 @@ const Crime = () => {
       North: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=4a06a24790aa4eedaf2a1ef7d011dfe1`,
     };
 
+    const getDynamicDateRange = () => {
+      const today = new Date();
+      // First day of the month three months ago
+      const firstDayOfThreeMonthsAgo = new Date(
+        today.getFullYear(),
+        today.getMonth() - 2,
+        1
+      );
+      // Last day of the current month
+      const lastDayOfCurrentMonth = new Date(
+        today.getFullYear(),
+        today.getMonth() + 1,
+        0
+      );
+
+      const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      };
+
+      return {
+        startDate: formatDate(firstDayOfThreeMonthsAgo),
+        endDate: formatDate(lastDayOfCurrentMonth),
+      };
+    };
+    const { startDate, endDate } = getDynamicDateRange();
+
+    const presentUser = presUser.find((user) => user.username === username);
     if (username) {
       if (matchedProvinceUser) {
         setDashboardUrl(
@@ -43,6 +73,16 @@ const Crime = () => {
         );
         setMapUrl(
           `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`
+        );
+      } else if (presentUser) {
+        setDashboardUrl(
+          `https://gis.police.gov.rw/portal/apps/dashboards/55b1980a3b0b4acab126427eb72d4707#date=${startDate},${endDate}`
+        );
+        setMapUrl(
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`
+        );
+        setAppForEditUrl(
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`
         );
       } else {
         setDashboardUrl(
