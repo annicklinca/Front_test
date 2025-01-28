@@ -111,6 +111,7 @@ export const flashUser = [
   { username: "admin" },
   { username: "digpops" },
   { username: "commit@police.gov.rw" },
+  { username: "presentation" },
 ];
 
 export const topoUser = [

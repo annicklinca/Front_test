@@ -27,13 +27,13 @@ const Header = ({ currentPage }) => {
   );
   const matchtraffic = trafficUser.find((user) => user.username === username);
   const matchAsoc = asocUser.find((user) => user.username === username);
+
   const isAnalyticsVisible =
     !matchtraffic && !(matchedProvinceUser || matchedDistrictUser);
   const trafficVisible = !matchtraffic;
   const asocVisible = !matchAsoc;
 
   const matchFlash = flashUser.find((user) => user.username === username);
-
   const matchTopo = topoUser.find((user) => user.username === username);
 
   const handleSignout = () => {
