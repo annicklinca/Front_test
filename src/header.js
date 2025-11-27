@@ -121,7 +121,7 @@ const Header = ({ currentPage }) => {
                 Analytics
               </a>
             )}
-            {trafficVisible && asocVisible && (
+            {trafficVisible && (
               <a
                 href="/Operations"
                 className={`text-sm font-bold leading-6 text-blue-800 hover:border-b-2 pt-2 ${

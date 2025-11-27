@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../header";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { provinceUsers, districtUsers, asocUser, presUser } from "../users";
+import { provinceUsers, districtUsers, presUser } from "../users";
 
 const Crime = () => {
   const username = localStorage.getItem("username");
@@ -103,7 +103,7 @@ const Crime = () => {
   const isTabVisibleP = !provinceUsers.find(
     (user) => user.username === username
   );
-  const isTabvisibleA = !asocUser.find((user) => user.username === username);
+  // const isTabvisibleASOC = !asocUser.find((user) => user.username === username);
 
   return (
     <div className="bg-gray-200">
@@ -113,11 +113,9 @@ const Crime = () => {
           <TabList className="bg-blue-900 border-none font-normal p-2 text-sm text-white">
             <Tab>Dashboard</Tab>
             {isTabVisible && <Tab>Compare Maps</Tab>}
-            {isTabVisible && isTabVisibleP && isTabvisibleA && (
-              <Tab>Time Profile Maps</Tab>
-            )}
-            {isTabVisible && isTabvisibleA && <Tab>App for Edit</Tab>}
-            {isTabvisibleA && <Tab>Form</Tab>}
+            {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
+            {isTabVisible && <Tab>App for Edit</Tab>}
+            {<Tab>Form</Tab>}
           </TabList>
         </div>
         <TabPanel>
