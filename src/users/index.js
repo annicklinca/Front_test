@@ -91,7 +91,10 @@ export const trafficUser = [
   { username: "Comm_Traffic" },
 ];
 
-export const asocUser = [{ username: "ASOC_Operation" }];
+export const asocUser = [
+  { username: "ASOC_Operation" },
+  { username: "dcaasoc" },
+];
 export const presUser = [{ username: "presentation" }];
 
 export const flashUser = [

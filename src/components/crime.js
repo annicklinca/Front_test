@@ -7,7 +7,7 @@ import { provinceUsers, districtUsers, asocUser, presUser } from "../users";
 const Crime = () => {
   const username = localStorage.getItem("username");
   const token = sessionStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
 
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
@@ -61,7 +61,7 @@ const Crime = () => {
     if (username) {
       if (matchedProvinceUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#province=${matchedProvinceUser.province}`
         );
         setMapUrl(
           `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#province=${matchedProvinceUser.province}`
@@ -69,7 +69,7 @@ const Crime = () => {
         setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
       } else if (matchedDistrictUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#district=${matchedDistrictUser.district}`
         );
         setMapUrl(
           `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`
@@ -86,7 +86,7 @@ const Crime = () => {
         );
       } else {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/a78ce57cc353476f9285c3ea1ba302dd`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16`
         );
         setMapUrl(
           `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`
@@ -96,7 +96,7 @@ const Crime = () => {
         );
       }
     }
-  }, [username]);
+  }, [username, token]);
   const isTabVisible = !districtUsers.find(
     (user) => user.username === username
   );
