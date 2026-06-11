@@ -1,6 +1,11 @@
 import React from "react";
 // import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes instead of Switch
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom"; // Import Routes instead of Switch
 import Crime from "./components/crime";
 import Incident from "./components/incident";
 import Analytics from "./components/analytics";
@@ -12,15 +17,23 @@ import Operations from "./components/operations";
 import Report from "./report";
 import ProtectedRoute from "./components/protectedRoute";
 import Experience from "./components/experience";
+import Allincidents from "./components/allincidents";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/app">
       <div className="App">
         <Routes>
-          {" "}
           <Route
-            path="/Crime"
+            path="allincidents"
+            element={
+              <ProtectedRoute>
+                <Allincidents />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="crime"
             element={
               <ProtectedRoute>
                 <Crime />
@@ -28,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/Incident"
+            path="incident"
             element={
               <ProtectedRoute>
                 <Incident />
@@ -36,7 +49,7 @@ function App() {
             }
           />
           <Route
-            path="/Accident"
+            path="accident"
             element={
               <ProtectedRoute>
                 <Accident />
@@ -44,7 +57,7 @@ function App() {
             }
           />
           <Route
-            path="/Analytics"
+            path="analytics"
             element={
               <ProtectedRoute>
                 <Analytics />
@@ -52,7 +65,7 @@ function App() {
             }
           />
           <Route
-            path="/Operations"
+            path="operations"
             element={
               <ProtectedRoute>
                 <Operations />
@@ -60,7 +73,7 @@ function App() {
             }
           />
           <Route
-            path="/Report"
+            path="report"
             element={
               <ProtectedRoute>
                 <Report />
@@ -68,7 +81,7 @@ function App() {
             }
           />
           <Route
-            path="/Flash"
+            path="flash"
             element={
               <ProtectedRoute>
                 <Flash />
@@ -76,7 +89,7 @@ function App() {
             }
           />
           <Route
-            path="/Map"
+            path="map"
             element={
               <ProtectedRoute>
                 <Map />
@@ -84,7 +97,7 @@ function App() {
             }
           />
           <Route
-            path="/Experience"
+            path="experience"
             element={
               <ProtectedRoute>
                 <Experience />
@@ -92,6 +105,7 @@ function App() {
             }
           />
           <Route path="/" element={<Login />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>

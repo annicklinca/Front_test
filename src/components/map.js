@@ -4,12 +4,12 @@ import "react-tabs/style/react-tabs.css";
 
 const Map = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
       <Header currentPage="Map" />
 
       <div className="iframe-container">
         <iframe
-          src="https://gis.police.gov.rw/portal/apps/experiencebuilder/experience/?id=d8cf153d25ca4824b1765b79d575c4d1"
+          src="https://gis.police.gov.rw/portal/apps/experiencebuilder/experience/?id=d3c78076338f45c9b9021adc656e3d75"
           title="Tab 1 Content"
         ></iframe>
       </div>

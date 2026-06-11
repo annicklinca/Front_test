@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Header from "../header";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import { provinceUsers, districtUsers, presUser } from "../users";
 
 const Incident = () => {
   const username = localStorage.getItem("username");
+
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
   const [appForEditUrl, setAppForEditUrl] = useState("");
+  const [activeSubTab, setActiveSubTab] = useState("dashboard");
+
+  const isTabVisible = !districtUsers.find((u) => u.username === username);
+  const isTabVisibleP = !provinceUsers.find((u) => u.username === username);
 
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
@@ -17,34 +20,25 @@ const Incident = () => {
     const matchedDistrictUser = districtUsers.find(
       (user) => user.username === username
     );
-
     const presentUser = presUser.find((user) => user.username === username);
-    // Helper function to get dynamic dates
+
     const getDynamicDateRange = () => {
       const today = new Date();
-      // First day of the month three months ago
       const firstDayOfThreeMonthsAgo = new Date(
         today.getFullYear(),
         today.getMonth() - 2,
         1
       );
-      // Last day of the current month
       const lastDayOfCurrentMonth = new Date(
         today.getFullYear(),
         today.getMonth() + 1,
         0
       );
-
-      const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        return `${year}-${month}-${day}`;
-      };
-
+      const fmt = (d) =>
+        `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
       return {
-        startDate: formatDate(firstDayOfThreeMonthsAgo),
-        endDate: formatDate(lastDayOfCurrentMonth),
+        startDate: fmt(firstDayOfThreeMonthsAgo),
+        endDate: fmt(lastDayOfCurrentMonth),
       };
     };
     const { startDate, endDate } = getDynamicDateRange();
@@ -98,69 +92,48 @@ const Incident = () => {
     }
   }, [username]);
 
-  const isTabVisible = !districtUsers.find(
-    (user) => user.username === username
-  );
-  const isTabVisibleP = !provinceUsers.find(
-    (user) => user.username === username
-  );
-  // const isTabvisibleA = !asocUser.find((user) => user.username === username);
+  const subTabs = [
+    { key: "dashboard", label: "Dashboard" },
+    ...(isTabVisible ? [{ key: "maps", label: "Maps" }] : []),
+    ...(isTabVisible && isTabVisibleP
+      ? [{ key: "timeprofilemaps", label: "Time Profile Maps" }]
+      : []),
+    ...(isTabVisible ? [{ key: "apforedit", label: "App for Edit" }] : []),
+    { key: "form", label: "Form" },
+  ];
 
   return (
-    <div className="bg-gray-200">
-      <Header currentPage="Incident" />
-      <Tabs>
-        <div className="">
-          <TabList className="bg-blue-900 border-none font-normal p-2 text-sm text-white">
-            <Tab>Dashboard</Tab>
-            {isTabVisible && <Tab>Compare Maps</Tab>}
-            {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
-            {isTabVisible && <Tab>App for Edit</Tab>}
-            {<Tab>Form</Tab>}
-          </TabList>
-        </div>
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe src={dashboardUrl} title="Dashboard" />
-          </div>
-        </TabPanel>
+    <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
+      <Header
+        currentPage="Incident"
+        subTabs={subTabs}
+        activeSubTab={activeSubTab}
+        onSubTabChange={setActiveSubTab}
+      />
 
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={mapUrl} title="Maps" />
-            </div>
-          </TabPanel>
+      <div className="iframe-container">
+        {activeSubTab === "dashboard" && (
+          <iframe src={dashboardUrl} title="Dashboard" />
         )}
-
-        {isTabVisible && isTabVisibleP && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe
-                src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
-                title="Time Profile Maps"
-              />
-            </div>
-          </TabPanel>
+        {activeSubTab === "maps" && isTabVisible && (
+          <iframe src={mapUrl} title="Maps" />
         )}
-
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={appForEditUrl} title="App for Edit" />
-            </div>
-          </TabPanel>
+        {activeSubTab === "timeprofilemaps" && isTabVisible && isTabVisibleP && (
+          <iframe
+            src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=0dc78cf4353343d3816b1603e6337adc"
+            title="Time Profile Maps"
+          />
         )}
-
-        <TabPanel>
-          <div className="iframe-container">
-            <iframe
-              src="https://survey123.arcgis.com/share/8d894a6097084809a69a7b55b90903e8?portalUrl=https://gis.police.gov.rw/portal"
-              title="Form"
-            />
-          </div>
-        </TabPanel>
-      </Tabs>
+        {activeSubTab === "apforedit" && isTabVisible && (
+          <iframe src={appForEditUrl} title="App for Edit" />
+        )}
+        {activeSubTab === "form" && (
+          <iframe
+            src="https://survey123.arcgis.com/share/8d894a6097084809a69a7b55b90903e8?portalUrl=https://gis.police.gov.rw/portal"
+            title="Form"
+          />
+        )}
+      </div>
     </div>
   );
 };

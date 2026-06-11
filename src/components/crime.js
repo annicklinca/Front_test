@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Header from "../header";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import { provinceUsers, districtUsers, presUser } from "../users";
 
 const Crime = () => {
   const username = localStorage.getItem("username");
   const token = sessionStorage.getItem("token");
-  // console.log(token);
 
   const [dashboardUrl, setDashboardUrl] = useState("");
   const [mapUrl, setMapUrl] = useState("");
   const [appForEditUrl, setAppForEditUrl] = useState("");
+  const [activeSubTab, setActiveSubTab] = useState("dashboard");
+
+  const isTabVisible = !districtUsers.find((u) => u.username === username);
+  const isTabVisibleP = !provinceUsers.find((u) => u.username === username);
 
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
-      (user) => user.username === username
+      (user) => user.username === username,
     );
     const matchedDistrictUser = districtUsers.find(
-      (user) => user.username === username
+      (user) => user.username === username,
     );
     const provinceUrls = {
       East: `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=bd54a3cc30874d5a9cc252194f1b3913`,
@@ -30,142 +31,110 @@ const Crime = () => {
 
     const getDynamicDateRange = () => {
       const today = new Date();
-      // First day of the month three months ago
       const firstDayOfThreeMonthsAgo = new Date(
         today.getFullYear(),
         today.getMonth() - 2,
-        1
+        1,
       );
-      // Last day of the current month
       const lastDayOfCurrentMonth = new Date(
         today.getFullYear(),
         today.getMonth() + 1,
-        0
+        0,
       );
-
-      const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        return `${year}-${month}-${day}`;
-      };
-
+      const fmt = (d) =>
+        `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
       return {
-        startDate: formatDate(firstDayOfThreeMonthsAgo),
-        endDate: formatDate(lastDayOfCurrentMonth),
+        startDate: fmt(firstDayOfThreeMonthsAgo),
+        endDate: fmt(lastDayOfCurrentMonth),
       };
     };
     const { startDate, endDate } = getDynamicDateRange();
-
     const presentUser = presUser.find((user) => user.username === username);
+
     if (username) {
       if (matchedProvinceUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#province=${matchedProvinceUser.province}`,
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#province=${matchedProvinceUser.province}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#province=${matchedProvinceUser.province}`,
         );
         setAppForEditUrl(provinceUrls[matchedProvinceUser.province]);
       } else if (matchedDistrictUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16#district=${matchedDistrictUser.district}`,
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15#district=${matchedDistrictUser.district}`,
         );
       } else if (presentUser) {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/55b1980a3b0b4acab126427eb72d4707#date=${startDate},${endDate}`
+          `https://gis.police.gov.rw/portal/apps/dashboards/4440fd780fe54ace8cd018290b5867aa#date=${startDate},${endDate}`,
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`,
         );
         setAppForEditUrl(
-          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`,
         );
       } else {
         setDashboardUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16`
+          `https://gis.police.gov.rw/portal/apps/dashboards/b6d9b921ba3145f78096e591f45ceb16`,
         );
         setMapUrl(
-          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`
+          `https://gis.police.gov.rw/portal/apps/dashboards/cdab4aa198e94c039f910a6e8293ae15`,
         );
         setAppForEditUrl(
-          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`
+          `https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=eff58e3f9d0742148574b12d5d8fd24b`,
         );
       }
     }
   }, [username, token]);
-  const isTabVisible = !districtUsers.find(
-    (user) => user.username === username
-  );
-  const isTabVisibleP = !provinceUsers.find(
-    (user) => user.username === username
-  );
-  // const isTabvisibleASOC = !asocUser.find((user) => user.username === username);
+
+  const subTabs = [
+    { key: "dashboard", label: "Dashboard" },
+    ...(isTabVisible ? [{ key: "maps", label: "Maps" }] : []),
+    ...(isTabVisible && isTabVisibleP
+      ? [{ key: "timeprofilemaps", label: "Time Profile Maps" }]
+      : []),
+    ...(isTabVisible ? [{ key: "apforedit", label: "App for Edit" }] : []),
+    { key: "form", label: "Form" },
+  ];
 
   return (
-    <div className="bg-gray-200">
-      <Header currentPage="Crime" />
-      <Tabs>
-        <div className="">
-          <TabList className="bg-blue-900 border-none font-normal p-2 text-sm text-white">
-            <Tab>Dashboard</Tab>
-            {isTabVisible && <Tab>Compare Maps</Tab>}
-            {isTabVisible && isTabVisibleP && <Tab>Time Profile Maps</Tab>}
-            {isTabVisible && <Tab>App for Edit</Tab>}
-            {<Tab>Form</Tab>}
-          </TabList>
-        </div>
-        <TabPanel>
-          {/* Dashboard */}
-          <div className="iframe-container">
-            <iframe src={dashboardUrl} title="Dashboard"></iframe>
-          </div>
-        </TabPanel>
+    <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
+      <Header
+        currentPage="Crime"
+        subTabs={subTabs}
+        activeSubTab={activeSubTab}
+        onSubTabChange={setActiveSubTab}
+      />
 
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={mapUrl} title="Maps"></iframe>
-            </div>
-            {/* Maps*/}
-          </TabPanel>
+      <div className="iframe-container">
+        {activeSubTab === "dashboard" && (
+          <iframe src={dashboardUrl} title="Dashboard" />
         )}
-
-        {isTabVisible && isTabVisibleP && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe
-                src={`https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=da9b404fa8ee4505b1c5acca51177f74`}
-                title="Time profile map"
-              ></iframe>
-            </div>
-            {/* Time profile map */}
-          </TabPanel>
+        {activeSubTab === "maps" && isTabVisible && (
+          <iframe src={mapUrl} title="Maps" />
         )}
-
-        {isTabVisible && (
-          <TabPanel>
-            <div className="iframe-container">
-              <iframe src={appForEditUrl} title="App for Edit"></iframe>
-            </div>
-            {/* Apps for Edit*/}
-          </TabPanel>
-        )}
-
-        <TabPanel>
-          <div className="iframe-container">
+        {activeSubTab === "timeprofilemaps" &&
+          isTabVisible &&
+          isTabVisibleP && (
             <iframe
-              src={`https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal`}
-              title="Form"
-            ></iframe>
-          </div>
-          {/* Forms */}
-        </TabPanel>
-      </Tabs>
-      {/* Your Crime page content goes here */}
+              src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=da9b404fa8ee4505b1c5acca51177f74"
+              title="Time Profile Maps"
+            />
+          )}
+        {activeSubTab === "apforedit" && isTabVisible && (
+          <iframe src={appForEditUrl} title="App for Edit" />
+        )}
+        {activeSubTab === "form" && (
+          <iframe
+            src="https://survey123.arcgis.com/share/7aaafe2d2c7b480982cd997ba5858d43?portalUrl=https://gis.police.gov.rw/portal"
+            title="Form"
+          />
+        )}
+      </div>
     </div>
   );
 };

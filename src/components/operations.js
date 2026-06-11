@@ -4,7 +4,7 @@ import "react-tabs/style/react-tabs.css";
 
 const Operations = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
       <Header currentPage="Operations" />
 
       <div className="iframe-container">
