@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import logo from "./RNP_LOGO.png";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,10 @@ const Login = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = "Crimes and Incidents Management System";
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
@@ -42,8 +46,7 @@ const Login = () => {
     params.append("client", "https://gis.police.gov.rw/portal/");
     params.append("expiration", "3600");
 
-    const URL =
-      "https://gis.police.gov.rw/portal/sharing/generateToken?f=json";
+    const URL = "https://gis.police.gov.rw/portal/sharing/generateToken?f=json";
 
     axios
       .post(URL, params, {
@@ -76,11 +79,11 @@ const Login = () => {
           };
           window.sessionStorage.setItem(
             "esriJSAPIOAuth",
-            JSON.stringify(esriSAPIOAuth)
+            JSON.stringify(esriSAPIOAuth),
           );
 
           const isTrafficUser = trafficUser.some(
-            (user) => user.username === username
+            (user) => user.username === username,
           );
 
           if (isTrafficUser) {
@@ -98,20 +101,21 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 relative overflow-hidden">
-
       {/* Decorative background circles */}
       <div className="absolute top-[-80px] left-[-80px] w-72 h-72 rounded-full bg-blue-700 opacity-20 blur-3xl" />
       <div className="absolute bottom-[-60px] right-[-60px] w-80 h-80 rounded-full bg-blue-500 opacity-20 blur-3xl" />
 
       <div className="relative w-full max-w-md">
-
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-
           {/* Card top banner */}
           <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 px-8 pt-8 pb-6 flex flex-col items-center border-b border-blue-700">
             <div className="bg-white rounded-full p-2 shadow-lg mb-4">
-              <img src={logo} alt="RNP Logo" className="w-20 h-20 object-contain" />
+              <img
+                src={logo}
+                alt="RNP Logo"
+                className="w-20 h-20 object-contain"
+              />
             </div>
             <div className="text-center">
               <p className="text-blue-300 text-xs font-bold tracking-widest uppercase mb-1">
@@ -134,7 +138,6 @@ const Login = () => {
             </p>
 
             <form onSubmit={submit} className="space-y-5">
-
               {/* Username */}
               <div>
                 <label
@@ -200,9 +203,25 @@ const Login = () => {
               >
                 {loading ? (
                   <>
-                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                    <svg
+                      className="animate-spin h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      />
                     </svg>
                     Signing in…
                   </>
@@ -213,23 +232,21 @@ const Login = () => {
                   </>
                 )}
               </button>
-
             </form>
           </div>
-
         </div>
 
         {/* Footer note */}
         <div className="text-center mt-6 space-y-1">
           <span className="inline-flex items-center gap-1.5 bg-blue-800 bg-opacity-60 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full border border-blue-600 tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>
-            Version 2.0
+            Version 2.1
           </span>
           <p className="text-blue-300 text-xs opacity-70">
-            © {new Date().getFullYear()} Rwanda National Police. All rights reserved.
+            © {new Date().getFullYear()} Rwanda National Police. All rights
+            reserved.
           </p>
         </div>
-
       </div>
 
       <ToastContainer />

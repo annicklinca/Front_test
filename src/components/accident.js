@@ -14,6 +14,8 @@ const Accident = () => {
   const isTabVisible = !districtUsers.find((u) => u.username === username);
   const istTabVisibleP = !provinceUsers.find((u) => u.username === username);
 
+  useEffect(() => { document.title = "Road Safety Incidents"; }, []);
+
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
       (user) => user.username === username

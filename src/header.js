@@ -105,14 +105,14 @@ const Header = ({
     {
       show: trafficVisible,
       href: "/app/crime",
-      label: "Crimes",
+      label: "Crime Incidents",
       page: "Crime",
       Icon: ShieldExclamationIcon,
     },
     {
       show: asocVisible,
       href: "/app/accident",
-      label: "Accidents",
+      label: "Road Safety Accidents",
       page: "Accident",
       Icon: TruckIcon,
     },
@@ -133,7 +133,7 @@ const Header = ({
     {
       show: trafficVisible,
       href: "/app/operations",
-      label: "Operations",
+      label: "Target Operations",
       page: "Operations",
       Icon: CogIcon,
     },
@@ -167,10 +167,13 @@ const Header = ({
       {/* ── Top Header Bar ── */}
       <header className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 shadow-lg sticky top-0 z-40 border-b border-blue-700">
         <div className="relative flex items-center justify-between px-4 py-2.5">
-
           {/* Left — Logo + RNP badge */}
           <a href="#@" className="flex items-center gap-2.5 z-10">
-            <img className="w-12 h-12 object-contain drop-shadow-md" src={logo} alt="RNP Logo" />
+            <img
+              className="w-12 h-12 object-contain drop-shadow-md"
+              src={logo}
+              alt="RNP Logo"
+            />
             <div className="flex flex-col leading-none">
               <span className="text-xs font-bold text-blue-300 tracking-widest uppercase">
                 RNP
@@ -199,7 +202,6 @@ const Header = ({
           >
             <Bars3Icon className="h-6 w-6" />
           </button>
-
         </div>
       </header>
 
@@ -331,7 +333,7 @@ const Header = ({
         <div className="px-5 py-2.5 flex items-center justify-between flex-shrink-0">
           <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block"></span>
-            Version 2.0
+            Version 2.1
           </span>
           <span className="text-gray-400 text-xs">IMS</span>
         </div>

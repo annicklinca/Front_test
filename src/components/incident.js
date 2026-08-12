@@ -13,6 +13,8 @@ const Incident = () => {
   const isTabVisible = !districtUsers.find((u) => u.username === username);
   const isTabVisibleP = !provinceUsers.find((u) => u.username === username);
 
+  useEffect(() => { document.title = "Other Incidents"; }, []);
+
   useEffect(() => {
     const matchedProvinceUser = provinceUsers.find(
       (user) => user.username === username

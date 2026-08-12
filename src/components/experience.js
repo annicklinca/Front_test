@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../header";
 import "react-tabs/style/react-tabs.css";
 
 const Experience = () => {
+  useEffect(() => { document.title = "Topographic Map"; }, []);
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
       <Header currentPage="Experience" />
