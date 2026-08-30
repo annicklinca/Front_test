@@ -2,13 +2,19 @@
   "name": "poli_front",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/app",
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "esri-loader": "^3.7.0",
+    "express": "^4.19.2",
     "flowbite": "^2.3.0",
+    "poli_front": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -19,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "set \"PUBLIC_URL=/app\" && react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

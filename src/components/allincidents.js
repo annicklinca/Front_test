@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import Header from "../header";
 import "react-tabs/style/react-tabs.css";
 
-const Analytics = () => {
-  useEffect(() => { document.title = "Analytics"; }, []);
+const Allincidents = () => {
+  useEffect(() => { document.title = "All Incidents"; }, []);
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
-      <Header currentPage="Analytics" />
+      <Header currentPage="allincidents" />
+
       <div className="iframe-container">
         <iframe
-          src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=17ee70c25231406382ba75d6510553e2"
+          src="https://gis.police.gov.rw/portal/apps/dashboards/a57ad55b56624af0a651e75b3c1ca5a8"
           title="Tab 1 Content"
         ></iframe>
       </div>
@@ -17,4 +18,4 @@ const Analytics = () => {
   );
 };
 
-export default Analytics;
+export default Allincidents;

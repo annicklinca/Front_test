@@ -90,3 +90,45 @@ export const trafficUser = [
   { username: "Traffic3" },
   { username: "Comm_Traffic" },
 ];
+
+export const asocUser = [
+  { username: "ASOC_Operation" },
+  { username: "dcaasoc" },
+];
+export const presUser = [{ username: "presentation" }];
+
+export const flashUser = [
+  { username: "RPC_Central" },
+  { username: "RPC_Eastern" },
+  { username: "RPC_Northern" },
+  { username: "RPC_Southern" },
+  { username: "RPC_Western" },
+  { username: "rnp_publisher" },
+  { username: "rnp_user2" },
+  { username: "rnp_user3" },
+  { username: "rnp_user4" },
+  { username: "rnp_user5" },
+  { username: "rnp_user6" },
+  { username: "rnp_user7" },
+  { username: "rnp_user8" },
+  { username: "admin" },
+  { username: "digpops" },
+  { username: "commit@police.gov.rw" },
+  { username: "presentation" },
+];
+
+export const topoUser = [
+  { username: "rnp_publisher" },
+  { username: "rnp_user2" },
+  { username: "rnp_user3" },
+  { username: "rnp_user4" },
+  { username: "rnp_user5" },
+  { username: "rnp_user6" },
+  { username: "rnp_user7" },
+  { username: "rnp_user8" },
+  { username: "admin" },
+  { username: "digpops" },
+  { username: "commit@police.gov.rw" },
+  { username: "Operation_Room" },
+  { username: "Operation_Room01" },
+];

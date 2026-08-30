@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import Header from "../header";
 import "react-tabs/style/react-tabs.css";
 
-const Analytics = () => {
-  useEffect(() => { document.title = "Analytics"; }, []);
+const Map = () => {
+  useEffect(() => { document.title = "Deployment Map"; }, []);
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gray-200">
-      <Header currentPage="Analytics" />
+      <Header currentPage="Map" />
+
       <div className="iframe-container">
         <iframe
-          src="https://gis.police.gov.rw/portal/apps/webappviewer/index.html?id=17ee70c25231406382ba75d6510553e2"
+          src="https://gis.police.gov.rw/portal/apps/experiencebuilder/experience/?id=d3c78076338f45c9b9021adc656e3d75"
           title="Tab 1 Content"
         ></iframe>
       </div>
@@ -17,4 +18,4 @@ const Analytics = () => {
   );
 };
 
-export default Analytics;
+export default Map;
